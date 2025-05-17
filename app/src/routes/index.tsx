@@ -1,15 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Logo } from "../ui/logo";
-import { cn } from "@/utils/misc";
-import { buttonVariants } from "@/ui/button-util";
-import { Loader2, Star } from "lucide-react";
-import { Button } from "@/ui/button";
-import siteConfig from "~/site.config";
-import { ThemeSwitcherHome } from "@/ui/theme-switcher";
-import ShadowPNG from "/images/shadow.png";
-import { useConvexAuth } from "@convex-dev/react-query";
-import { Route as AuthLoginRoute } from "@/routes/_app/login/_layout.index";
 import { Route as DashboardRoute } from "@/routes/_app/_auth/dashboard/_layout.index";
+import { Route as AuthLoginRoute } from "@/routes/_app/login/_layout.index";
+import { Button } from "@/ui/button";
+import { buttonVariants } from "@/ui/button-util";
+import { ThemeSwitcherHome } from "@/ui/theme-switcher";
+import { cn } from "@/utils/misc";
+import { useConvexAuth } from "@convex-dev/react-query";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
+import siteConfig from "~/site.config";
+import { Logo } from "../ui/logo";
+import ShadowPNG from "/images/shadow.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,7 +26,7 @@ function Index() {
           <Logo />
         </Link>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-6">
+          {/* <div className="flex items-center gap-6">
             <a
               href="https://github.com/get-convex/convex-saas/tree/main/docs"
               target="_blank"
@@ -82,7 +82,7 @@ function Index() {
                 fill="currentColor"
               />
             </svg>
-          </a>
+          </a> */}
           <Link
             to={
               isAuthenticated
@@ -126,17 +126,10 @@ function Index() {
             {siteConfig.siteTitle}
           </Button>
           <h1 className="text-center text-6xl font-bold leading-tight text-primary md:text-7xl lg:leading-tight">
-            Production Ready
-            <br />
-            SaaS Stack for Convex
+            AI Spreadsheet Editor
           </h1>
           <p className="max-w-screen-md text-center text-lg !leading-normal text-muted-foreground md:text-xl">
-            Launch in hours with a modern{" "}
-            <span className="font-medium text-primary">
-              Production-Ready Stack
-            </span>
-            <br className="hidden lg:inline-block" /> Stripe integration.
-            TanStack-powered. Open Source.
+            Quickly compose together spreadsheet formulas with a built-in =AI function. Math like SUM, to excel wizadry like VLOOKUP.
           </p>
           <div className="mt-2 flex w-full items-center justify-center gap-2">
             <Link
@@ -145,20 +138,9 @@ function Index() {
             >
               Get Started
             </Link>
-            <a
-              href="https://github.com/get-convex/convex-saas/tree/main/docs"
-              target="_blank"
-              rel="noreferrer"
-              className={cn(
-                buttonVariants({ size: "sm", variant: "outline" }),
-                "hidden dark:bg-secondary dark:hover:opacity-80 sm:flex",
-              )}
-            >
-              Explore Documentation
-            </a>
           </div>
         </div>
-        <div className="flex w-full flex-col items-center justify-center gap-2">
+        {/* <div className="flex w-full flex-col items-center justify-center gap-2">
           <h2 className="text-center font-serif text-xl font-medium text-primary/60">
             Built for Developers
           </h2>
@@ -567,7 +549,7 @@ function Index() {
             </svg>
             Star Us on GitHub
           </a>
-        </div>
+        </div> */}
       </div>
 
       {/* Footer */}
@@ -610,17 +592,6 @@ function Index() {
                 DanielKanem.
               </a>
             </p>
-          </p>
-          <p className="flex items-center whitespace-nowrap text-center text-sm font-medium text-primary/60">
-            Source code available on&nbsp;{" "}
-            <a
-              href="https://github.com/get-convex/convex-saas"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-primary hover:text-primary hover:underline"
-            >
-              GitHub.
-            </a>
           </p>
         </div>
       </footer>
