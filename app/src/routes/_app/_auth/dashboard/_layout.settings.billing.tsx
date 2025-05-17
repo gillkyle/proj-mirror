@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Switch } from "@/ui/switch";
 import { Button } from "@/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
-import { api } from "~/convex/_generated/api";
-import { convexQuery, useConvexAction } from "@convex-dev/react-query";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { Switch } from "@/ui/switch";
 import { getLocaleCurrency } from "@/utils/misc";
+import { convexQuery, useConvexAction } from "@convex-dev/react-query";
 import { CURRENCIES, PLANS } from "@cvx/schema";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { api } from "~/convex/_generated/api";
 
 export const Route = createFileRoute(
   "/_app/_auth/dashboard/_layout/settings/billing",
@@ -88,7 +88,7 @@ export default function BillingSettings() {
           This is a demo app.
         </h2>
         <p className="text-sm font-normal text-primary/60">
-          Convex SaaS is a demo app that uses Stripe test environment. You can
+          LightningSheet is a demo app that uses Stripe test environment. You can
           find a list of test card numbers on the{" "}
           <a
             href="https://stripe.com/docs/testing#cards"

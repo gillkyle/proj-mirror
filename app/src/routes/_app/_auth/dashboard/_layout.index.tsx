@@ -25,23 +25,23 @@ export default function Dashboard() {
             <div className="space-y-2">
               <h4 className="font-medium text-foreground">Data Analysis</h4>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Count all numbers greater than 20 in column A</li>
-                <li>Find the average of the top 3 values in column B</li>
-                <li>Show the difference between max and min values in row 1</li>
+                <li>=AI: Count all numbers greater than 20 in column A</li>
+                <li>=AI: Find the average of the top 3 values in column B</li>
+                <li>=AI: Show the difference between max and min values in row 1</li>
               </ul>
 
               <h4 className="font-medium text-foreground">Text Operations</h4>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Combine the text from cells A1 and C1 with a comma between them</li>
-                <li>Count how many cells in column C contain the word 'count"</li>
-                <li>Convert all text in cell F1 to uppercase</li>
+                <li>=AI: Combine the text from cells A1 and C1 with a comma between them</li>
+                <li>=AI: Count how many cells in column C contain the word 'count"</li>
+                <li>=AI: Convert all text in cell F1 to uppercase</li>
               </ul>
 
               <h4 className="font-medium text-foreground">Conditional Logic</h4>
               <ul className="list-disc pl-5 space-y-1">
-                <li>If A1 is greater than 100, show 'High', otherwise show 'Low'</li>
-                <li>Check if any cells in range A1:A10 contain negative numbers</li>
-                <li>Count how many values in column A are above average</li>
+                <li>=AI: If A1 is greater than 100, show 'High', otherwise show 'Low'</li>
+                <li>=AI: Check if any cells in range A1:A10 contain negative numbers</li>
+                <li>=AI: Count how many values in column A are above average</li>
               </ul>
 
             </div>

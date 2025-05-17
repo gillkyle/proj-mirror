@@ -83,8 +83,8 @@ export function Spreadsheet() {
     // empty rows for padding
     ["", "Use AI! ↓"],
     ["", "", "Use the =AI function with a prompt "],
-    ["", "", "it generates a formula for you, try: "],
-    ["", "", "'=AI: count all the numbers over 20 in column A' ↓"],
+    ["", "", "it generates a formula for you "],
+    ["", "", "copy an example below and paste it in ↓"],
     ["", "", ""],
     [],
     [],

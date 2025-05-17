@@ -529,7 +529,7 @@ function Index() {
             Proudly Open Source
           </h1>
           <p className="text-center text-lg text-primary/60">
-            Convex SaaS is a fully Open Source project.
+            LightningSheet is a fully Open Source project.
             <br />
             The code is available on GitHub.
           </p>

@@ -1,17 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Upload } from "lucide-react";
-import { useUploadFiles } from "@xixixao/uploadstuff/react";
-import { useDoubleCheck } from "@/ui/use-double-check";
-import { Input } from "@/ui/input";
 import { Button } from "@/ui/button";
-import { convexQuery, useConvexMutation } from "@convex-dev/react-query";
-import { api } from "~/convex/_generated/api";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useRef } from "react";
-import { useForm } from "@tanstack/react-form";
-import { zodValidator } from "@tanstack/zod-form-adapter";
-import * as validators from "@/utils/validators";
+import { Input } from "@/ui/input";
+import { useDoubleCheck } from "@/ui/use-double-check";
 import { useSignOut } from "@/utils/misc";
+import * as validators from "@/utils/validators";
+import { convexQuery, useConvexMutation } from "@convex-dev/react-query";
+import { useForm } from "@tanstack/react-form";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
+import { zodValidator } from "@tanstack/zod-form-adapter";
+import { useUploadFiles } from "@xixixao/uploadstuff/react";
+import { Upload } from "lucide-react";
+import { useRef } from "react";
+import { api } from "~/convex/_generated/api";
 
 export const Route = createFileRoute("/_app/_auth/dashboard/_layout/settings/")(
   {
@@ -197,7 +197,7 @@ export default function DashboardSettings() {
         <div className="flex flex-col gap-2 p-6">
           <h2 className="text-xl font-medium text-primary">Delete Account</h2>
           <p className="text-sm font-normal text-primary/60">
-            Permanently delete your Convex SaaS account, all of your projects,
+            Permanently delete your LightningSheet account, all of your projects,
             links and their respective stats.
           </p>
         </div>

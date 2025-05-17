@@ -1,6 +1,6 @@
 import { AUTH_EMAIL, AUTH_RESEND_KEY } from "@cvx/env";
-import { ERRORS } from "~/errors";
 import { z } from "zod";
+import { ERRORS } from "~/errors";
 
 const ResendSuccessSchema = z.object({
   id: z.string(),
@@ -31,7 +31,7 @@ export async function sendEmail(options: SendEmailOptions) {
     throw new Error(`Resend - ${ERRORS.ENVS_NOT_INITIALIZED}`);
   }
 
-  const from = AUTH_EMAIL ?? "Convex SaaS <onboarding@resend.dev>";
+  const from = AUTH_EMAIL ?? "LightningSheet <onboarding@resend.dev>";
   const email = { from, ...options };
 
   const response = await fetch("https://api.resend.com/emails", {
