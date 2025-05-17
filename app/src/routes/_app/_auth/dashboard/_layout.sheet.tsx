@@ -1,6 +1,5 @@
 import { Spreadsheet } from "@/components/spreadsheet";
 import { createFileRoute } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
 import siteConfig from "~/site.config";
 
 export const Route = createFileRoute("/_app/_auth/dashboard/_layout/sheet")({
@@ -13,8 +12,6 @@ export const Route = createFileRoute("/_app/_auth/dashboard/_layout/sheet")({
 });
 
 export default function Dashboard() {
-  const { t } = useTranslation();
-
   return (
     <div className="flex h-full w-full bg-secondary px-6 py-8 dark:bg-black">
       <div className="z-10 mx-auto flex h-full w-full max-w-screen-xl gap-12">

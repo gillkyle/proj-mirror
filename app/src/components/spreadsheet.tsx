@@ -58,13 +58,13 @@ export function Spreadsheet() {
     [],
   ];
 
-  const data2 = [
-    ['Is A1 in Sheet1 > 10?', '=IF(Sheet1!A1>10,"TRUE","FALSE")','','','','',''],
-    ['Is A:A in Sheet > 150?', '=IF(SUM(Sheet1!A:A)>150,"TRUE","FALSE")'],
-    ['How many blank cells are in the Sheet1?', '=COUNTBLANK(Sheet1!A1:D5)'],
-    ['Generate a random number', '=RAND()'],
-    ['Number of sheets in this workbook', '=SHEETS()'],
-  ];
+  // const data2 = [
+  //   ['Is A1 in Sheet1 > 10?', '=IF(Sheet1!A1>10,"TRUE","FALSE")','','','','',''],
+  //   ['Is A:A in Sheet > 150?', '=IF(SUM(Sheet1!A:A)>150,"TRUE","FALSE")'],
+  //   ['How many blank cells are in the Sheet1?', '=COUNTBLANK(Sheet1!A1:D5)'],
+  //   ['Generate a random number', '=RAND()'],
+  //   ['Number of sheets in this workbook', '=SHEETS()'],
+  // ];
 
   const hyperformulaInstance = HyperFormula.buildEmpty({
     licenseKey: 'internal-use-in-handsontable',
