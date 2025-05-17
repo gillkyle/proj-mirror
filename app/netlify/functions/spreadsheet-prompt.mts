@@ -1,7 +1,8 @@
 import { OpenAI } from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  // @ts-expect-error Netlify.env is global
+  apiKey: Netlify.env.get("OPENAI_API_KEY")
 });
 
 
