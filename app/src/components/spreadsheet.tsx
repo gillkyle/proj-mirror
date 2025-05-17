@@ -139,7 +139,7 @@ export function Spreadsheet() {
           engine: hyperformulaInstance,
           sheetName: 'Sheet1',
         }}
-        beforeChange={(changes, source) => {
+        beforeChange={(changes, _source) => {
           if (!changes) return true;
           
           // Process each change synchronously to maintain compatibility

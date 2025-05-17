@@ -18,7 +18,7 @@ export const evaluateAIFormula = action({
     row: v.number(),
     col: v.number(),
   },
-  handler: async (ctx, { formula, sheetData, row, col }) => {
+  handler: async (_ctx, { formula, sheetData, row, col }) => {
     // Remove the "=AI:" prefix if it exists
     const prompt = formula.startsWith("=AI:") ? formula.slice(4) : formula;
 
