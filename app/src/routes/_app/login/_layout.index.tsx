@@ -1,17 +1,17 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { z } from "zod";
-import { Loader2 } from "lucide-react";
-import { Input } from "@/ui/input";
-import { Button } from "@/ui/button";
-import { useForm } from "@tanstack/react-form";
-import { zodValidator } from "@tanstack/zod-form-adapter";
-import { useEffect, useState } from "react";
-import { Route as OnboardingUsernameRoute } from "@/routes/_app/_auth/onboarding/_layout.username";
 import { Route as DashboardRoute } from "@/routes/_app/_auth/dashboard/_layout.index";
-import { useQuery } from "@tanstack/react-query";
+import { Route as OnboardingUsernameRoute } from "@/routes/_app/_auth/onboarding/_layout.username";
+import { Button } from "@/ui/button";
+import { Input } from "@/ui/input";
+import { useAuthActions } from "@convex-dev/auth/react";
 import { convexQuery, useConvexAuth } from "@convex-dev/react-query";
 import { api } from "@cvx/_generated/api";
+import { useForm } from "@tanstack/react-form";
+import { useQuery } from "@tanstack/react-query";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { zodValidator } from "@tanstack/zod-form-adapter";
+import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { z } from "zod";
 
 export const Route = createFileRoute("/_app/login/_layout/")({
   component: Login,
@@ -62,7 +62,7 @@ function LoginForm({ onSubmit }: { onSubmit: (email: string) => void }) {
     <div className="mx-auto flex h-full w-full max-w-96 flex-col items-center justify-center gap-6">
       <div className="mb-2 flex flex-col gap-2">
         <h3 className="text-center text-2xl font-medium text-primary">
-          Continue to Convex SaaS
+          Continue to LightningSheet
         </h3>
         <p className="text-center text-base font-normal text-primary/60">
           Welcome back! Please log in to continue.
@@ -127,7 +127,7 @@ function LoginForm({ onSubmit }: { onSubmit: (email: string) => void }) {
         </Button>
       </form>
 
-      <div className="relative flex w-full items-center justify-center">
+      {/* <div className="relative flex w-full items-center justify-center">
         <span className="absolute w-full border-b border-border" />
         <span className="z-10 bg-card px-2 text-xs font-medium uppercase text-primary/60">
           Or continue with
@@ -153,7 +153,7 @@ function LoginForm({ onSubmit }: { onSubmit: (email: string) => void }) {
           </svg>
           Github
         </Button>
-      </div>
+      </div> */}
 
       <p className="px-12 text-center text-sm font-normal leading-normal text-primary/60">
         By clicking continue, you agree to our{" "}
