@@ -8,8 +8,9 @@ import { registerRenderer, textRenderer } from 'handsontable/renderers';
 import 'handsontable/styles/handsontable.css';
 import 'handsontable/styles/ht-theme-main.css';
 import { HyperFormula } from 'hyperformula';
-import { Download } from 'lucide-react';
+import { Download, RefreshCcw } from 'lucide-react';
 import { useRef } from 'react';
+import { toast } from "sonner";
 
 // register Handsontable's modules
 registerAllModules();
@@ -56,8 +57,10 @@ export function Spreadsheet() {
         col
       });
 
+      
       console.log(result);
-
+      
+      toast.success(result.formula);
       return result.formula;
     } catch (error) {
       console.error('Failed to evaluate AI formula:', error);
@@ -67,25 +70,22 @@ export function Spreadsheet() {
  
   const data1 = [
     // Basic calculations with numbers
-    [25, null, 'Sum Example', '=SUM(A1:A5)', null, 'Hello World', '=CONCATENATE(F1," length: ",LEN(F1))', '=LEN(F1)', null, null, null, null],
-    [10, null, 'Average', '=AVERAGE(A1:A5)', null, 'Testing123', '=CONCATENATE(F2," length: ",LEN(F2))', '=LEN(F2)'],
-    [15, null, 'Maximum', '=MAX(A1:A5)', null, 'OpenAI', '=CONCATENATE(F3," length: ",LEN(F3))', '=LEN(F3)'],
-    [30, null, 'Minimum', '=MIN(A1:A5)', null, 'Spreadsheet', '=CONCATENATE(F4," length: ",LEN(F4))', '=LEN(F4)'],
-    [20, null, 'Count', '=COUNT(A1:A5)', null, 'Example', '=CONCATENATE(F5," length: ",LEN(F5))', '=LEN(F5)'],
+    [25, null, 'SUM', '=SUM(A1:A10)', null, 'Hello World', '=CONCATENATE(F1," length: ",LEN(F1))', '=LEN(F1)', null, null, null, null],
+    [3, null, 'AVERAGE', '=AVERAGE(A1:A10)', null, '', '=CONCATENATE(F2," length: ",LEN(F2))', '=LEN(F2)'],
+    [15, null, 'MAX', '=MAX(A1:A10)', null, '^ add something here!', '', ''],
+    [30, null, 'MIN', '=MIN(A1:A10)', null, '', '', ''],
+    [20, null, 'COUNT', '=COUNT(A1:A10)', null, 'Year', '=YEAR(TODAY())',],
     
     // Empty row for separation
-    [null, null, null, null, null, null, null, null, null],
+    [null, "← Add a new value and ", "watch these update", "↑", null, 'Month', '=MONTH(TODAY())', null, null],
+    [null, "", null, null, null, null, null, null, null],
     
-    // Date manipulations
-    [null, null, 'Today', '=TODAY()', null, '2024-01-15', '=DATEADD(F7,7,"days")', '=NETWORKDAYS(F7,G7)'],
-    [null, null, 'End of Month', '=EOMONTH(TODAY(),0)', null, '2024-02-01', '=DATEADD(F8,-1,"months")', '=DATEDIF(F8,G8,"d")'],
-    [null, null, 'Year', '=YEAR(TODAY())', null, '2024-03-20', '=DATEADD(F9,1,"years")', '=WEEKDAY(F9)'],
-    [null, null, 'Month', '=MONTH(TODAY())', null, '2024-12-31', '=DATEADD(F10,-3,"months")', '=DAYS360(F10,G10)'],
-
     // empty rows for padding
-    [],
-    [],
-    [],
+    ["", "Use AI! ↓"],
+    ["", "", "Use the =AI function with a prompt "],
+    ["", "", "it generates a formula for you, try: "],
+    ["", "", "'=AI: count all the numbers over 20 in column A' ↓"],
+    ["", "", ""],
     [],
     [],
     [],
@@ -113,12 +113,6 @@ export function Spreadsheet() {
 
   return (
     <div className="ht-theme-main flex flex-col gap-2">
-      <div className="flex flex-row gap-2">
-        <Button variant="outline" size="sm" onClick={exportHandler}>
-          <Download className="mr-2 h-4 w-4" />
-          Download as CSV
-        </Button>
-      </div>
       <div>
         <div className="text-sm text-gray-500">Double click to view and edit formulas. Type =AI: followed by your request to use AI formulas.</div>
       </div>
@@ -166,6 +160,18 @@ export function Spreadsheet() {
         }}
         licenseKey="non-commercial-and-evaluation"
       />
+      <div className="flex flex-row gap-2">
+        <Button variant="outline" size="sm" onClick={exportHandler}>
+          <Download className="mr-2 h-4 w-4" />
+          Download as CSV
+        </Button>
+        <Button variant="outline" size="sm" onClick={()=>{
+          window.location.reload();
+        }}>
+          <RefreshCcw className="mr-2 h-4 w-4" />
+          Reset Demo
+        </Button>
+      </div>
     </div>
   );
 }

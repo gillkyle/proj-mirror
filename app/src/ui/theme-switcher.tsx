@@ -1,13 +1,13 @@
-import { Sun, Moon, Monitor } from "lucide-react";
-import { cn } from "@/utils/misc";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/ui/select";
+import { cn } from "@/utils/misc";
+import { Monitor, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const themes = ["light", "dark", "system"] as const;
 
 const useTheme = () => {
   const [currentTheme, setCurrentTheme] = useState<"light" | "dark" | "system">(
-    localStorage.theme || "system",
+    localStorage.theme || "light",
   );
   const [initialized, setInitialized] = useState(false);
 
