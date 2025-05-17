@@ -1,5 +1,8 @@
 import { Button } from '@/ui/button';
+import { api } from "@cvx/_generated/api";
 import { HotTable, HotTableRef } from '@handsontable/react-wrapper';
+import { useAction } from "convex/react";
+import type { CellChange } from 'handsontable/common';
 import { registerAllModules } from 'handsontable/registry';
 import { registerRenderer, textRenderer } from 'handsontable/renderers';
 import 'handsontable/styles/handsontable.css';
@@ -13,6 +16,7 @@ registerAllModules();
 
 export function Spreadsheet() {
   const hotRef = useRef<HotTableRef>(null);
+  const evaluateAI = useAction(api.openai.evaluateAIFormula);
 
   function exportHandler() {
     const hot = hotRef.current?.hotInstance;
@@ -27,9 +31,38 @@ export function Spreadsheet() {
       fileExtension: 'csv',
       filename: 'spreadsheet_[YYYY]-[MM]-[DD]',
       mimeType: 'text/csv',
-      rowDelimiter: '\r\n',
       rowHeaders: true,
     });
+  };
+
+  // Handle AI formula evaluation
+  const handleAIFormula = async (value: string, row: number, col: number) => {
+    if (!value.startsWith('=AI:')) return value;
+
+    const hot = hotRef.current?.hotInstance;
+    if (!hot) return value;
+
+    try {
+      // Get the current sheet data
+      const sheetData = hot.getData() as string[][];
+
+      console.log(sheetData);
+      
+      // Evaluate the AI formula
+      const result = await evaluateAI({
+        formula: value,
+        sheetData,
+        row,
+        col
+      });
+
+      console.log(result);
+
+      return result.formula;
+    } catch (error) {
+      console.error('Failed to evaluate AI formula:', error);
+      return value;
+    }
   };
  
   const data1 = [
@@ -77,11 +110,6 @@ export function Spreadsheet() {
     TD.style.color = 'green';
     TD.style.background = '#d7f1e1';
   });
-  console.log(hotRef.current?.hotInstance);
-
-  // check the hotinstance selection and get the cell value, if we have multiple values, set activceCell to undefined, otherwise show the formula down below
-  const activeCell = hotRef.current?.hotInstance?.getSelected();
-  console.log(activeCell);
 
   return (
     <div className="ht-theme-main flex flex-col gap-2">
@@ -92,7 +120,7 @@ export function Spreadsheet() {
         </Button>
       </div>
       <div>
-        <div className="text-sm text-gray-500">Double click to view and edit formulas</div>
+        <div className="text-sm text-gray-500">Double click to view and edit formulas. Type =AI: followed by your request to use AI formulas.</div>
       </div>
       <HotTable
         ref={hotRef}
@@ -111,16 +139,33 @@ export function Spreadsheet() {
           engine: hyperformulaInstance,
           sheetName: 'Sheet1',
         }}
+        beforeChange={(changes, source) => {
+          if (!changes) return true;
+          
+          // Process each change synchronously to maintain compatibility
+          for (let i = 0; i < changes.length; i++) {
+            const change = changes[i];
+            if (!change) continue;
+            
+            const [row, col, , newValue] = change;
+            if (typeof newValue === 'string' && newValue.startsWith('=AI:')) {
+              // Replace the AI formula immediately with a loading placeholder
+              changes[i] = [row as number, col as number, null, 'LOADING...'] as CellChange;
+              
+              // Process the AI formula asynchronously
+              handleAIFormula(newValue, row as number, col as number).then(formula => {
+                const hot = hotRef.current?.hotInstance;
+                if (hot) {
+                  hot.setDataAtCell(row as number, col as number, formula);
+                }
+              });
+            }
+          }
+          
+          return true;
+        }}
         licenseKey="non-commercial-and-evaluation"
-        // some custom cell rendering...
-        // cell={[
-        //   {
-        //     row: 0,
-        //     col: 0,
-        //     renderer: 'customStylesRenderer',
-        //   },
-        // ]}
       />
     </div>
   );
-};
+}
